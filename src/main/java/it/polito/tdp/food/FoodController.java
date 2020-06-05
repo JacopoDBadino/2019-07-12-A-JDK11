@@ -6,6 +6,7 @@ package it.polito.tdp.food;
 
 import java.net.URL;
 import java.util.ArrayList;
+import java.util.Collections;
 import java.util.List;
 import java.util.ResourceBundle;
 
@@ -60,9 +61,11 @@ public class FoodController {
 			System.out.println(model.getGrafo().vertexSet().size());
 			System.out.println(model.getGrafo().edgeSet().size());
 
+			
 			for (Food f : model.getGrafo().vertexSet())
 				boxFood.getItems().add(f.getDisplay_name());
-
+			
+			Collections.sort(boxFood.getItems());
 		} catch (Exception e) {
 			System.out.println("ERRORE");
 		}

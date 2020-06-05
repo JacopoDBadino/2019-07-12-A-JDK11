@@ -63,9 +63,14 @@ public class Model {
 	public List<FoodPeso> getCalorie(Food source) {
 		List<FoodPeso> esito = new ArrayList<FoodPeso>();
 
-		for (Food f : Graphs.neighborListOf(this.grafo, source))
-			esito.add(new FoodPeso(f, Graphs.neighborListOf(this.grafo, f).size()));
+		for (Adiacenze a : dao.getArchi()) {
+			
+			if (a.getId1() == source.getFood_code()&& this.grafo.containsVertex(databaseFood.get(a.getId2())))
+				esito.add(new FoodPeso(databaseFood.get(a.getId2()), a.getPeso()));
 
+			if (a.getId2() == source.getFood_code() && this.grafo.containsVertex(databaseFood.get(a.getId1())))
+				esito.add(new FoodPeso(databaseFood.get(a.getId1()), a.getPeso()));
+		}
 		Collections.sort(esito);
 
 		return esito;

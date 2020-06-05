@@ -3,9 +3,9 @@ package it.polito.tdp.food.model;
 public class FoodPeso implements Comparable<FoodPeso> {
 
 	private Food food;
-	private int peso;
+	private double peso;
 
-	public FoodPeso(Food food, int peso) {
+	public FoodPeso(Food food, double peso) {
 		super();
 		this.food = food;
 		this.peso = peso;
@@ -15,14 +15,14 @@ public class FoodPeso implements Comparable<FoodPeso> {
 		return food;
 	}
 
-	public int getPeso() {
+	public double getPeso() {
 		return peso;
 	}
 
 	@Override
 	public int compareTo(FoodPeso o) {
 		// TODO Auto-generated method stub
-		return -(this.peso - o.getPeso());
+		return (int) -(this.peso - o.getPeso());
 	}
 
 }

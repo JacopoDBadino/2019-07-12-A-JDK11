@@ -105,7 +105,7 @@ public class FoodDao {
 	public List<Food> getVertex(int qty) {
 		String sql = "SELECT f.food_code, f.display_name\r\n" + "FROM `portion` AS p, food AS f\r\n"
 				+ "WHERE p.food_code = f.food_code\r\n" + "GROUP BY f.food_code, f.display_name\r\n"
-				+ "HAVING COUNT(DISTINCT p.portion_id)<?";
+				+ "HAVING COUNT(DISTINCT p.portion_id)<=?";
 		try {
 			Connection conn = DBConnect.getConnection();
 
