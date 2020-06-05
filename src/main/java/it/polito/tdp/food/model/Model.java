@@ -71,4 +71,14 @@ public class Model {
 		return result ;
 	}
 
+	public List<Food> getCibi() {
+		return cibi;
+	}
+
+	public Graph<Food, DefaultWeightedEdge> getGraph() {
+		return graph;
+	}
+	
+	
+
 }

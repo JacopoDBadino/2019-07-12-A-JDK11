@@ -58,8 +58,11 @@ public class FoodController {
 			int portions = Integer.parseInt(porzioniStr);
 			List<Food> cibi = model.getFoods(portions);
 			boxFood.getItems().clear();
-			boxFood.getItems().addAll(cibi) ;
-			
+			boxFood.getItems().addAll(cibi);
+
+			System.out.println("Grafo creato con: \n#" + model.getGraph().vertexSet().size() + " vertici\n#"
+					+ model.getGraph().edgeSet().size() + " archi");
+
 		} catch (NumberFormatException ex) {
 			txtResult.appendText("ERRORE: Devi inserire un numero\n");
 			return;
@@ -69,38 +72,37 @@ public class FoodController {
 	@FXML
 	void doCalorie(ActionEvent event) {
 		txtResult.clear();
-		
-		Food f = boxFood.getValue() ;
-		
-		if(f==null) {
+
+		Food f = boxFood.getValue();
+
+		if (f == null) {
 			txtResult.appendText("ERRORE: devi selezionare un cibo\n");
-			return ;
+			return;
 		}
-		
+
 		List<FoodCalories> lista = model.elencoCibiConnessi(f);
-		
-		for(int i=0; i<5 && i<lista.size(); i++) {
-			txtResult.appendText(String.format("%s %f\n",
-					lista.get(i).getFood().getDisplay_name(),
-					lista.get(i).getCalories()));
+
+		for (int i = 0; i < 5 && i < lista.size(); i++) {
+			txtResult.appendText(
+					String.format("%s %f\n", lista.get(i).getFood().getDisplay_name(), lista.get(i).getCalories()));
 		}
 	}
 
 	@FXML
 	void doSimula(ActionEvent event) {
 		txtResult.clear();
-		
-		Food f = boxFood.getValue() ;
-		
-		if(f==null) {
+
+		Food f = boxFood.getValue();
+
+		if (f == null) {
 			txtResult.appendText("ERRORE: devi selezionare un cibo\n");
-			return ;
+			return;
 		}
-		
-		int K ;
+
+		int K;
 		try {
-			K = Integer.parseInt(txtK.getText()) ;
-		} catch(NumberFormatException ex) {
+			K = Integer.parseInt(txtK.getText());
+		} catch (NumberFormatException ex) {
 			txtResult.appendText("ERRORE: K deve essere un numero\n");
 			return;
 		}
